@@ -46,10 +46,11 @@ namespace Cymbal
             string filename = e.FullPath;
             try
             {
-                _processor.ProcessCsvFile(filename);
-                
-                EventLog.WriteEntry("OnFileCreated:: Processed " + filename,
-                    EventLogEntryType.Information);
+                if (_processor.ProcessCsvFile(filename))
+                {               
+                    EventLog.WriteEntry("OnFileCreated:: Processed " + filename,
+                        EventLogEntryType.Information);
+                }
             }
             catch (Exception ex)
             {

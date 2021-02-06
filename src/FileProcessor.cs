@@ -14,13 +14,13 @@ namespace Cymbal
             _connectionString = GetConnectionString();
         }
 
-        public void ProcessCsvFile(string path)
+        public bool ProcessCsvFile(string path)
         {
             FileStream fs = null;
             try
             {
                 if (!FileOpener.TryOpen(path, ref fs))
-                    return;
+                    return false;
                 
                 using (StreamReader sr = new StreamReader(fs, Encoding.UTF8))
                 {
@@ -30,6 +30,8 @@ namespace Cymbal
                         ProcessLine(line);
                     }
                 }
+
+                return true;
             }
             finally
             {
