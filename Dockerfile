@@ -21,10 +21,10 @@ RUN powershell -Command `
 
 
 # Copy Executable
-COPY ./bin/Release/CymbalProcessorService.* C:/Cymbal/
+COPY ./src/bin/Release/CymbalProcessorService.* C:/Cymbal/
 
 # Copy log configuration file
-COPY ./LogMonitorConfig.json C:/LogMonitor
+COPY ./deploy/LogMonitorConfig.json C:/LogMonitor
 
 # Create the Windows Service
 RUN sc create CymbalFileProcessor start=demand binpath=C:\\Cymbal\\CymbalProcessorService.exe

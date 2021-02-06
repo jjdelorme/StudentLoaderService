@@ -1,0 +1,39 @@
+ kind: DaemonSet
+ apiVersion: apps/v1
+ metadata:
+   name: flex-pod
+   labels:
+     name: smb-flex-driver-setup
+ spec:
+   selector:
+     matchLabels:
+       app: smb-flex-driver-setup
+   template:
+     metadata:
+       labels:
+         app: smb-flex-driver-setup
+     spec:
+       tolerations:
+         - key: "node.kubernetes.io/os"
+           value: "windows"
+           operator: "Equal"
+           effect: "NoSchedule"   
+       nodeSelector:
+         kubernetes.io/os: windows
+         cloud.google.com/gke-os-distribution: windows_ltsc
+       initContainers:
+       - name: setup-smb-flex
+         image: mcr.microsoft.com/windows/servercore:ltsc2019
+         command: ["powershell"]
+         args: ["$tmp = \"C:\\flexvolume\\flexvolume-windows.zip\"; Invoke-WebRequest -Uri https://github.com/microsoft/K8s-Storage-Plugins/releases/download/V0.0.3/flexvolume-windows.zip -OutFile $tmp; $tmp | Expand-archive -DestinationPath C:\\flexvolume -Force; rm -r $tmp"]
+         volumeMounts:
+           - name: flex-dir
+             mountPath: /flexvolume
+       containers:
+         - name: flex-driver
+           image: gcr.io/gke-release/pause-win:1.2.1
+       volumes:
+         - name: flex-dir
+           hostPath:
+             path: "\\etc\\kubernetes\\flexvolume"
+             type: DirectoryOrCreate
