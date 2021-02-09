@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FileOpener.cs" />
     <Compile Include="FileProcessor.cs" />
     <Compile Include="FileProcessorService.cs">
       <SubType>Component</SubType>

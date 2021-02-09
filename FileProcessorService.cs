@@ -54,7 +54,7 @@ namespace Cymbal
             catch (Exception ex)
             {
                 EventLog.WriteEntry("OnFileCreated:: Error processing " + filename + " " + 
-                    ex.Message, EventLogEntryType.Error);
+                    ex.Message, EventLogEntryType.Warning);
             }
         }
 
@@ -77,7 +77,7 @@ namespace Cymbal
                     "AppSettings missing or does not contain a WatchPath value.");
             }
 
-            if (!File.Exists(watchPath))
+            if (!Directory.Exists(watchPath))
             {
                 throw new ApplicationException(
                     "Configured WatchPath directory does not exist: " + watchPath);
