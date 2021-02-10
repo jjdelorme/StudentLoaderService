@@ -16,7 +16,7 @@ namespace Cymbal
             ServiceBase[] ServicesToRun;
             ServicesToRun = new ServiceBase[]
             {
-                new FileProcessorService()
+                new StudentLoaderService()
             };
             ServiceBase.Run(ServicesToRun);
         }

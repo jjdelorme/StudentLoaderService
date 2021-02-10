@@ -35,7 +35,14 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -45,9 +52,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Data\Course.cs" />
+    <Compile Include="Data\Department.cs" />
+    <Compile Include="Data\Enrollment.cs" />
+    <Compile Include="Data\Instructor.cs" />
+    <Compile Include="Data\OfficeAssignment.cs" />
+    <Compile Include="Data\Person.cs" />
+    <Compile Include="Data\SchoolContext.cs" />
+    <Compile Include="Data\Student.cs" />
     <Compile Include="FileOpener.cs" />
-    <Compile Include="FileProcessor.cs" />
-    <Compile Include="FileProcessorService.cs">
+    <Compile Include="StudentFileProcessor.cs" />
+    <Compile Include="StudentLoaderService.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Program.cs" />
@@ -55,6 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

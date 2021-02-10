@@ -6,17 +6,17 @@ using System.Diagnostics;
 
 namespace Cymbal
 {
-    public class FileProcessorService : ServiceBase
+    public class StudentLoaderService : ServiceBase
     {
         private FileSystemWatcher _fileWatcher;
-        private FileProcessor _processor;
+        private StudentFileProcessor _processor;
 
-        public FileProcessorService()
+        public StudentLoaderService()
         {
             this.ServiceName = "Cymbal.FileProcessorService";
             this.AutoLog = true;
 
-            _processor = new FileProcessor();
+            _processor = new StudentFileProcessor();
         }
 
         protected override void OnStart(string[] args)
@@ -46,9 +46,10 @@ namespace Cymbal
             string filename = e.FullPath;
             try
             {
-                _processor.ProcessCsvFile(filename);
+                int records = _processor.ProcessCsvFile(filename);
                 
-                EventLog.WriteEntry("OnFileCreated:: Processed " + filename,
+                EventLog.WriteEntry(
+                    string.Format("OnFileCreated:: Processed {0} in {1}.", records, filename),
                     EventLogEntryType.Information);
             }
             catch (Exception ex)
