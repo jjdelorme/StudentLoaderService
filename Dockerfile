@@ -21,13 +21,13 @@ RUN powershell -Command `
 
 
 # Copy Executable
-COPY ./src/bin/Release/CymbalProcessorService.* C:/Cymbal/
+COPY ./src/bin/Release/StudentLoaderService.* C:/Cymbal/
 
 # Copy log configuration file
 COPY ./deploy/LogMonitorConfig.json C:/LogMonitor
 
 # Create the Windows Service
-RUN sc create CymbalFileProcessor start=demand binpath=C:\\Cymbal\\CymbalProcessorService.exe
+RUN sc create StudentLoader start=demand binpath=C:\\Cymbal\\StudentLoaderService.exe
 
 # Start the service
-ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "C:\\Cymbal\\ServiceMonitor.exe", "CymbalFileProcessor"]
+ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "C:\\Cymbal\\ServiceMonitor.exe", "StudentLoader"]

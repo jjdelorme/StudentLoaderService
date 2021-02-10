@@ -67,9 +67,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\CymbalProcessorService.csproj">
+    <ProjectReference Include="..\..\src\StudentLoaderService.csproj">
       <Project>{ac6d97ca-1066-4094-9904-a985088dfceb}</Project>
-      <Name>CymbalProcessorService</Name>
+      <Name>StudentLoaderService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

@@ -7,7 +7,7 @@
     <ProjectGuid>{AC6D97CA-1066-4094-9904-A985088DFCEB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Cymbal</RootNamespace>
-    <AssemblyName>CymbalProcessorService</AssemblyName>
+    <AssemblyName>StudentLoaderService</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
