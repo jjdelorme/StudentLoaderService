@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cymbalfile-deployment
+  name: studentloader-deployment
   labels:
-    app: CymbalFileProcessor
+    app: StudentLoader
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: CymbalFileProcessor
+      app: StudentLoader
   template:
     metadata:
       labels:
-        app: CymbalFileProcessor
+        app: StudentLoader
     spec:
       containers:
-      - name: cymbalfile
-        image: gcr.io/jasondel-test-project/cymbalfileservice:v2
+      - name: studentloader
+        image: gcr.io/jasondel-test-project/studentloader:v2
         volumeMounts:
         - name: smb-volume
           mountPath: /data
