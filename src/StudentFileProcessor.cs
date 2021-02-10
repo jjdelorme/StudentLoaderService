@@ -30,6 +30,7 @@ namespace Cymbal
                     {
                         string line = sr.ReadLine();
                         ProcessLine(line);
+                        
                         records++;
                     }
                 }
