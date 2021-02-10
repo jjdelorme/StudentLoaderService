@@ -2,7 +2,7 @@
 
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
-# Install IIS, LogMonitor.exe and ServiceMonitor.exe
+# Install LogMonitor.exe and ServiceMonitor.exe
 RUN powershell -Command `
     New-Item -ItemType Directory C:\Cymbal; `
     New-Item -ItemType Directory C:\LogMonitor; `
@@ -21,13 +21,13 @@ RUN powershell -Command `
 
 
 # Copy Executable
-COPY ./bin/Release/CymbalProcessorService.* C:/Cymbal/
+COPY ./src/bin/Release/CymbalProcessorService.* C:/Cymbal/
 
 # Copy log configuration file
-COPY ./LogMonitorConfig.json C:/LogMonitor
+COPY ./deploy/LogMonitorConfig.json C:/LogMonitor
 
 # Create the Windows Service
 RUN sc create CymbalFileProcessor start=demand binpath=C:\\Cymbal\\CymbalProcessorService.exe
 
-# Start "C:\LogMonitor\LogMonitor.exe C:\ServiceMonitor.exe w3svc"
+# Start the service
 ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "C:\\Cymbal\\ServiceMonitor.exe", "CymbalFileProcessor"]

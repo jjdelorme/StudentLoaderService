@@ -48,9 +48,12 @@ namespace Cymbal
             {
                 int records = _processor.ProcessCsvFile(filename);
                 
-                EventLog.WriteEntry(
-                    string.Format("OnFileCreated:: Processed {0} in {1}.", records, filename),
-                    EventLogEntryType.Information);
+                if (records > 0)
+                {               
+                    EventLog.WriteEntry(
+                        string.Format("OnFileCreated:: Processed {0} records in {1}", records, filename),
+                        EventLogEntryType.Information);
+                }
             }
             catch (Exception ex)
             {
