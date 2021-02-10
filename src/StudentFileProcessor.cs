@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using System.Text;
 using System.IO;
 using System.Configuration;
@@ -51,10 +52,7 @@ namespace Cymbal
             string[] values = line.Split(',');
             string firstName = values[0];
             string lastName = values[1];
-            DateTime enrollmentDate = DateTime.Parse(values[2]);
-
-            if (enrollmentDate > DateTime.Now)
-                throw new ApplicationException("Enrollment.");
+            DateTime enrollmentDate = DateTime.Now;
 
             Save(firstName, lastName, enrollmentDate);
         }
@@ -67,6 +65,7 @@ namespace Cymbal
             student.EnrollmentDate = enrollmentDate;
 
             _schoolContext.Students.Add(student);
+            _schoolContext.SaveChanges();
         }
     }
 }
