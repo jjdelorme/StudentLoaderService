@@ -20,6 +20,9 @@ spec:
         volumeMounts:
         - name: smb-volume
           mountPath: /data
+        - name: connection-strings
+          mountPath: "/Cymbal/secret"
+          readOnly: true  
       volumes:
       - name: smb-volume
         flexVolume:
@@ -28,6 +31,9 @@ spec:
             name: "smb-secret"
           options:
             source: "\\\\10.96.16.2\\smbshare"
+      - name: connection-strings
+        secret:
+          secretName: connection-strings            
       restartPolicy: Always
       nodeSelector:
         kubernetes.io/os: windows
