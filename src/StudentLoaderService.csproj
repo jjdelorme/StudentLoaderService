@@ -72,7 +72,7 @@
     <When Condition=" '$(Configuration)'=='Debug' ">
       <ItemGroup>
         <None Include="..\connectionStrings.config">
-          <Link>connectionStrings.config</Link>
+          <Link>secret\connectionStrings.config</Link>
           <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
         </None>
       </ItemGroup>
