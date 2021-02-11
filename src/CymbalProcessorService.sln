@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentLoaderService", "StudentLoaderService.csproj", "{AC6D97CA-1066-4094-9904-A985088DFCEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CymbalStudentLoaderTest", "..\test\CymbalStudentLoaderTest\CymbalStudentLoaderTest.csproj", "{518A9F27-3D10-468A-ABB2-4A4B5770222B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StudentLoaderTest", "..\test\CymbalStudentLoaderTest\StudentLoaderTest.csproj", "{518A9F27-3D10-468A-ABB2-4A4B5770222B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
