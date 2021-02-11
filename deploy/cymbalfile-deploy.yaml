@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: studentloader
-        image: gcr.io/jasondel-test-project/studentloader:v1
+        image: gcr.io/jasondel-test-project/studentloader:v1.2
         volumeMounts:
         - name: smb-volume
           mountPath: /data
