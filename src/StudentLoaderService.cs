@@ -10,13 +10,14 @@ namespace Cymbal
     {
         private FileSystemWatcher _fileWatcher;
         private StudentFileProcessor _processor;
+        private EventLog _eventLog;
 
         public StudentLoaderService()
         {
-            this.ServiceName = "Cymbal.FileProcessorService";
-            this.AutoLog = true;
+            this.ServiceName = "StudentLoader";
 
-            _processor = new StudentFileProcessor();
+            _eventLog = new EventLog(ServiceName, ".", ServiceName);
+            this.AutoLog = false;          
         }
 
         protected override void OnStart(string[] args)
@@ -25,6 +26,7 @@ namespace Cymbal
             {
                 string watchPath = GetWatchPath();
 
+                _processor = new StudentFileProcessor();
                 _fileWatcher = new FileSystemWatcher(watchPath, "*.csv");
                 _fileWatcher.Created += OnFileCreated;
                 _fileWatcher.EnableRaisingEvents = true;
@@ -68,6 +70,14 @@ namespace Cymbal
             {
                 _fileWatcher.EnableRaisingEvents = false;
                 _fileWatcher.Dispose();
+            }
+        }
+
+        public override EventLog EventLog
+        {
+            get
+            {
+                return _eventLog;
             }
         }
 

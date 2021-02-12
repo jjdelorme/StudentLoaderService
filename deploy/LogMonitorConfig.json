@@ -7,7 +7,7 @@
         "eventFormatMultiLine": false,
         "channels": [
           {
-            "name": "Application",
+            "name": "StudentLoader",
             "level": "Verbose"
           }
         ]

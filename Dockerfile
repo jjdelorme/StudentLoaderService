@@ -2,8 +2,9 @@
 
 FROM mcr.microsoft.com/windows/servercore:ltsc2019
 
-# Install LogMonitor.exe and ServiceMonitor.exe
+# Create custom Event Log, Install LogMonitor.exe and ServiceMonitor.exe
 RUN powershell -Command `
+    New-EventLog -LogName "StudentLoader" -Source "StudentLoader"; `
     New-Item -ItemType Directory C:\Cymbal; `
     New-Item -ItemType Directory C:\LogMonitor; `
     $downloads = `
