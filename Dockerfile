@@ -21,7 +21,7 @@ RUN powershell -Command `
 
 
 # Copy Executable
-COPY ./src/bin/Release/StudentLoaderService.* C:/Cymbal/
+COPY ./src/bin/Release/*.* C:/Cymbal/
 
 # Copy log configuration file
 COPY ./deploy/LogMonitorConfig.json C:/LogMonitor
