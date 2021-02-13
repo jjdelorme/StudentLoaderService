@@ -66,11 +66,11 @@ ENTRYPOINT ["C:\\LogMonitor\\LogMonitor.exe", "C:\\Cymbal\\ServiceMonitor.exe", 
 ```
 
 ## SMB File Share
-The service connects to a network Windows SMB share to monitor for new files created that it should process.  This demonstrates using SMB on a GKE with Windows Nodes using the [FlexVolume](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-storage/flexvolume.md).
+The service connects to a network Windows SMB share to monitor new files that it should process.  This demonstrates using SMB files on GKE Windows Nodes using the [FlexVolume](https://github.com/kubernetes/community/blob/master/contributors/devel/sig-storage/flexvolume.md).
 
-The FlexVolume is deployed as a [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) in order to copy the driver to every node in the cluster.  This is setup in ```deploy\smb-flex-driver-setup.yaml```.  
+The FlexVolume is deployed as a [DaemonSet](https://kubernetes.io/docs/concepts/workloads/controllers/daemonset/) in order to copy the driver to every Windows node in the cluster.  This is setup in ```deploy\smb-flex-driver-setup.yaml```.  
 
-The StudentLoader service deployment creates a volume with the following command:
+The StudentLoader service deployment creates a volume with the following yaml in ```cymbalfile-deploy.yaml```:
 
 ```yaml
       volumes:
