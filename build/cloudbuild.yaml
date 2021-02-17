@@ -1,0 +1,5 @@
+steps:
+- name: 'gcr.io/$PROJECT_ID/windows-builder'
+  args: [ '--command', 'powershell.exe -file build/build.ps1 -version ${_VERSION}' ]
+timeout: 3600s
+tags: ['StudentLoader']
