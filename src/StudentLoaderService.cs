@@ -10,13 +10,13 @@ namespace Cymbal
     {
         private FileSystemWatcher _fileWatcher;
         private StudentFileProcessor _processor;
-        private EventLog _eventLog;
 
         public StudentLoaderService()
         {
             this.ServiceName = "StudentLoader";
-
-            _eventLog = new EventLog(ServiceName, ".", ServiceName);
+            
+            this.EventLog.Log = this.ServiceName;
+            this.EventLog.Source = this.ServiceName;
             this.AutoLog = false;          
         }
 
@@ -70,14 +70,6 @@ namespace Cymbal
             {
                 _fileWatcher.EnableRaisingEvents = false;
                 _fileWatcher.Dispose();
-            }
-        }
-
-        public override EventLog EventLog
-        {
-            get
-            {
-                return _eventLog;
             }
         }
 
