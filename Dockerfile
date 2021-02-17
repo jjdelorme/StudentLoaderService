@@ -3,7 +3,8 @@
 # Build the .NET Framework binary with the Visual Studio build tools
 FROM gcr.io/jasondel-test-project/windows-build-tools AS build
 COPY ./src /src
-RUN msbuild /src/CymbalProcessorService.sln /t:Build /p:Configuration=Release
+WORKDIR /src
+RUN msbuild CymbalProcessorService.sln /t:Build /p:Configuration=Release
 
 # Build the runtime image
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS runtime

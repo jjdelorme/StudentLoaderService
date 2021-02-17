@@ -1,3 +1,6 @@
+# Execute with:
+# gcloud builds submit . --config build/cloudbuild.yaml  --substitutions _VERSION=v1.4
+#
 steps:
 - name: 'gcr.io/$PROJECT_ID/windows-builder'
   args: [ '--command', 'powershell.exe -file build/build.ps1 -version ${_VERSION}' ]
