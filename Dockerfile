@@ -1,10 +1,13 @@
 # escape=`
 
 # Build the .NET Framework binary with the Visual Studio build tools
-FROM gcr.io/jasondel-test-project/windows-build-tools AS build
+FROM gcr.io/jasondel-test-project/windows-build-tools:v1 AS build
 COPY ./src /src
+COPY ./test /test
+
 WORKDIR /src
-RUN msbuild CymbalProcessorService.sln /t:Build /p:Configuration=Release
+
+RUN nuget restore CymbalProcessorService.sln && msbuild CymbalProcessorService.sln /t:StudentLoaderService /p:Configuration=Release 
 
 # Build the runtime image
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS runtime
@@ -28,7 +31,7 @@ RUN powershell -Command `
     $downloads.ForEach({ Invoke-WebRequest -UseBasicParsing -Uri $psitem.uri -OutFile $psitem.outFile })
 
 # Copy Executable
-COPY --from=build /src/bin/Release/*.* C:/Cymbal/
+COPY --from=build /src/bin/Release C:/Cymbal
 
 # Copy log configuration file
 COPY ./deploy/LogMonitorConfig.json C:/LogMonitor
