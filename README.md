@@ -2,7 +2,7 @@
 
 The purpose of this repo is to demonstrate a legacy [Windows Service](https://docs.microsoft.com/en-us/dotnet/framework/windows-services/) written in .NET Framework deployed without any code change as a Windows Container to GKE Windows that persists to a SQL Server.  This sample highlights a few common considerations and solutions for working with Windows Containrs.
 
-This service complements the [Cymbal University](https://github.com/jjdelorme/contoso-university/tree/cymbal)
+This service complements the [Contoso University](https://github.com/jjdelorme/ContosoUniversity)
  sample and is responsible for watching a configured directory for new files with student records.  When a file is detected the service parses the file and adds new students to the SQL Server database running in [Cloud SQL for SQL Server](https://cloud.google.com/sql/docs/sqlserver/quickstart).
 
 ## Building the container
