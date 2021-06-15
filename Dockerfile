@@ -2,12 +2,15 @@
 
 # Build the .NET Framework binary with the Visual Studio build tools
 FROM gcr.io/jasondel-test-project/windows-build-tools:v1 AS build
+
 COPY ./src /src
 COPY ./test /test
 
 WORKDIR /src
 
-RUN nuget restore CymbalProcessorService.sln && msbuild CymbalProcessorService.sln /t:StudentLoaderService /p:Configuration=Release 
+RUN nuget restore StudentLoaderService.csproj -SolutionDirectory . 
+
+RUN C:\\BuildTools\\Common7\\Tools\\VsDevCmd.bat && msbuild CymbalProcessorService.sln /t:StudentLoaderService /p:Configuration=Release
 
 # Build the runtime image
 FROM mcr.microsoft.com/windows/servercore:ltsc2019 AS runtime
